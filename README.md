@@ -1,5 +1,7 @@
 # CodeMirror 6 WGSL language package
 
+![](https://github.com/iizukak/codemirror-lang-wgsl/actions/workflows/test.yaml/badge.svg)
+
 This is a WGSL ([WebGPU Shading Language](https://www.w3.org/TR/WGSL/))
 language package for [CodeMirror](https://codemirror.net/6/) editor.
 
