@@ -2,5 +2,6 @@
 /test
 /demo
 /node_modules
+/.github
 rollup.config.js
 tsconfig.json

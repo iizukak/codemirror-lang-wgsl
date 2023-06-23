@@ -1,6 +1,6 @@
 {
   "name": "@iizukak/codemirror-lang-wgsl",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "WGSL language support for CodeMirror",
   "author": {
     "name": "Kentaro Iizuka",
@@ -37,5 +37,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/iizukak/codemirror-lang-wgsl/"
-  }
+  },
+  "keywords": [
+    "editor",
+    "code"
+  ]
 }
