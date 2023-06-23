@@ -31,7 +31,7 @@ You can use like below code.
 ```typescript
 import { EditorView, basicSetup } from "codemirror";
 
-import { wgsl } from "../dist/index";
+import { wgsl } from "@iizukak/codemirror-lang-wgsl";
 
 let editor = new EditorView({
   extensions: [basicSetup, wgsl()],

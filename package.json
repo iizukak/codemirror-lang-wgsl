@@ -1,7 +1,11 @@
 {
   "name": "codemirror-lang-wgsl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "WGSL language support for CodeMirror",
+  "author": {
+    "name": "Kentaro Iizuka",
+    "email": "iizuka.kentaro@gmail.com"
+  },
   "scripts": {
     "test": "mocha test/test.js",
     "prepare": "rollup -c"
