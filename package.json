@@ -16,19 +16,17 @@
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "codemirror": "^6.0.1",
-    "@codemirror/language": "^6.8.0",
-    "@lezer/highlight": "^1.1.6",
-    "@lezer/lr": "^1.3.6"
+    "codemirror": "6.x"
   },
   "devDependencies": {
-    "@lezer/generator": "^1.3.0",
-    "mocha": "^10.2.0",
-    "rollup": "^3.25.1",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-ts": "^3.2.0",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "typescript": "^5.1.3"
+    "@codemirror/language": "6.x",
+    "@lezer/highlight": "1.x",
+    "@lezer/generator": "1.x",
+    "mocha": "10.x",
+    "rollup": "3.x",
+    "rollup-plugin-dts": "5.x",
+    "rollup-plugin-ts": "3.x",
+    "@rollup/plugin-node-resolve": "15.x"
   },
   "license": "MIT"
 }
