@@ -1,0 +1,127 @@
+# EmptyProgram
+
+==>
+
+Program()
+
+# LineComment
+
+// Line Comment
+
+==>
+
+Program(LineComment)
+
+# BlockComment
+
+/*
+  hoge
+*/
+
+==>
+
+Program(BlockComment)
+
+# GlobalDirective
+
+enable arbitrary_precision_float;
+
+==>
+
+Program(EnableDirective(Directive,Identifier))
+
+# GroupBinding
+
+@group(0) @binding(0) var<storage> lights : LightStorage;
+
+==>
+
+Program(LocalDeclaration(GlobalVariableDeclaration(AttributeList(Attribute(Identifier,IntLiteral),Attribute(Identifier,IntLiteral)),VariableDeclaration(Keyword,VariableQualifier(Keyword),VariableIdentifier(Identifier,TypeDeclaration(Identifier))))))
+
+# JustSemicolon
+
+;
+
+==>
+
+Program()
+
+# VarDefinition
+
+var surfaceColor = vec3f(0);
+
+==>
+
+Program(LocalDeclaration(GlobalVariableDeclaration(AttributeList,VariableDeclaration(Keyword,VariableIdentifier(Identifier)),Assign,Value(TypeDeclaration(Type),IntLiteral))))
+
+# EmptyStruct
+
+struct EmptyStruct {}
+
+==>
+
+Program(LocalDeclaration(StructDeclaration(AttributeList,Keyword,Identifier,StructBodyDeclaration)))
+
+# Struct
+
+struct PointLight {
+  position : vec3f,
+  color : vec3f,
+}
+
+==>
+
+Program(LocalDeclaration(StructDeclaration(AttributeList,Keyword,Identifier,StructBodyDeclaration(StructMember(AttributeList,Identifier,TypeDeclaration(Type)),StructMember(AttributeList,Identifier,TypeDeclaration(Type))))))
+
+# IntegratedExample
+
+// A fragment shader which lights textured geometry with point lights.
+
+// Lights from a storage buffer binding.
+struct PointLight {
+  position : vec3f,
+  color : vec3f,
+}
+
+struct LightStorage {
+  pointCount : u32,
+  point : array<PointLight>,
+}
+@group(0) @binding(0) var<storage> lights : LightStorage;
+
+// Texture and sampler.
+@group(1) @binding(0) var baseColorSampler : sampler;
+@group(1) @binding(1) var baseColorTexture : texture_2d<f32>;
+
+// Function arguments are values from the vertex shader.
+@fragment
+fn fragmentMain(@location(0) worldPos : vec3f,
+                @location(1) normal : vec3f,
+                @location(2) uv : vec2f) -> @location(0) vec4f {
+  // Sample the base color of the surface from a texture.
+  let baseColor = textureSample(baseColorTexture, baseColorSampler, uv);
+
+  let N = normalize(normal);
+  var surfaceColor = vec3f(0);
+
+  // Loop over the scene point lights.
+  for (var i = 0u; i < lights.pointCount; i++) {
+    let worldToLight = lights.point[i].position - worldPos;
+    let dist = length(worldToLight);
+    let dir = normalize(worldToLight);
+
+    // Determine the contribution of this light to the surface color.
+    let radiance = lights.point[i].color * (1 / pow(dist, 2));
+    let nDotL = max(dot(N, dir), 0);
+
+    // Accumulate light contribution to the surface color.
+    surfaceColor += baseColor.rgb * radiance * nDotL;
+  }
+
+  // Return the accumulated surface color.
+  return vec4(surfaceColor, baseColor.a);
+}
+
+==>
+
+Program(AttributeList,LineComment,LocalDeclaration(StructDeclaration(LineComment,Keyword,Identifier,StructBodyDeclaration(StructMember(AttributeList,Identifier,TypeDeclaration(Type)),StructMember(AttributeList,Identifier,TypeDeclaration(Type))))),LocalDeclaration(StructDeclaration(AttributeList,Keyword,Identifier,StructBodyDeclaration(StructMember(AttributeList,Identifier,TypeDeclaration(Type)),StructMember(AttributeList,Identifier,TypeDeclaration(Type,TypeDeclaration(Identifier)))))),LocalDeclaration(GlobalVariableDeclaration(AttributeList(Attribute(Identifier,IntLiteral),Attribute(Identifier,IntLiteral)),VariableDeclaration(Keyword,VariableQualifier(Keyword),VariableIdentifier(Identifier,TypeDeclaration(Identifier))))),LineComment,LocalDeclaration(GlobalVariableDeclaration(AttributeList(Attribute(Identifier,IntLiteral),Attribute(Identifier,IntLiteral)),VariableDeclaration(Keyword,VariableIdentifier(Identifier,TypeDeclaration(Type))))),LocalDeclaration(GlobalVariableDeclaration(AttributeList(Attribute(Identifier,IntLiteral),Attribute(Identifier,IntLiteral)),VariableDeclaration(Keyword,VariableIdentifier(Identifier,TypeDeclaration(Type,TypeDeclaration(Type)))))),LineComment,LocalDeclaration(FunctionDeclaration(AttributeList(Attribute(Identifier)),FunctionHeader(Keyword,Identifier,ParamList(Param(AttributeList(Attribute(Identifier,IntLiteral)),Identifier,TypeDeclaration(Type)),Param(AttributeList(Attribute(Identifier,IntLiteral)),Identifier,TypeDeclaration(Type)),Param(AttributeList(Attribute(Identifier,IntLiteral)),Identifier,TypeDeclaration(Type))),ReturnType(AttributeList(Attribute(Identifier,IntLiteral)),TypeDeclaration(Type))),CompoundStatement(LineComment,Statement(Keyword,VariableIdentifier(Identifier),Assign,Value(FunctionCall(Identifier),Identifier,Identifier,Identifier)),Statement(Keyword,VariableIdentifier(Identifier),Assign,Value(FunctionCall(Identifier),Identifier)),Statement(VariableDeclaration(Keyword,VariableIdentifier(Identifier)),Assign,Value(TypeDeclaration(Type),IntLiteral)),LineComment,Statement(Keyword,VariableDeclaration(Keyword,VariableIdentifier(Identifier)),Assign,Value(UintLiteral),Identifier,Lt,Identifier,Identifier,Identifier,Inc,CompoundStatement(Statement(Keyword,VariableIdentifier(Identifier),Assign,Value(Identifier,Identifier,LeftBracket,Identifier,RightBracket,Identifier,Sub,Identifier)),Statement(Keyword,VariableIdentifier(Identifier),Assign,Value(FunctionCall(Identifier),Identifier)),Statement(Keyword,VariableIdentifier(Identifier),Assign,Value(FunctionCall(Identifier),Identifier)),LineComment,Statement(Keyword,VariableIdentifier(Identifier),Assign,Value(Identifier,Identifier,LeftBracket,Identifier,RightBracket,Identifier,Mul,IntLiteral,Div,FunctionCall(Identifier),Identifier,IntLiteral)),Statement(Keyword,VariableIdentifier(Identifier),Assign,Value(FunctionCall(Identifier),FunctionCall(Identifier),Identifier,Identifier,IntLiteral)),LineComment,Statement(Identifier,AddAssign,Identifier,Identifier,Mul,Identifier,Mul,Identifier))),LineComment,Statement(Keyword,TypeDeclaration(Type),Identifier,Identifier,Identifier)))))

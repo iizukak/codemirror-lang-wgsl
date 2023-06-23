@@ -1,0 +1,5 @@
+/node_modules
+package-lock.json
+/dist
+/demo/demo.js
+/demo/demo.d.ts
