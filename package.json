@@ -20,13 +20,13 @@
   },
   "devDependencies": {
     "@codemirror/language": "6.x",
-    "@lezer/highlight": "1.x",
     "@lezer/generator": "1.x",
+    "@lezer/highlight": "1.x",
+    "@rollup/plugin-node-resolve": "15.x",
     "mocha": "10.x",
     "rollup": "3.x",
     "rollup-plugin-dts": "5.x",
-    "rollup-plugin-ts": "3.x",
-    "@rollup/plugin-node-resolve": "15.x"
+    "rollup-plugin-ts": "3.x"
   },
   "license": "MIT"
 }
