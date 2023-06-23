@@ -32,7 +32,6 @@ import { wgsl } from "../dist/index";
 let editor = new EditorView({
   extensions: [basicSetup, wgsl()],
   parent: document.body,
-  }`,
 });
 ```
 
