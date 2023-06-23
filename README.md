@@ -5,6 +5,10 @@
 This is a WGSL ([WebGPU Shading Language](https://www.w3.org/TR/WGSL/))
 language package for [CodeMirror](https://codemirror.net/6/) editor.
 
+## Demo
+
+You can try it [online](https://iizukak.github.io/codemirror-lang-wgsl/).
+
 ## Build and Test
 
 ```
