@@ -15,9 +15,13 @@ $ npm run prepare
 $ npm test
 ```
 
+## API
+
+- `wgslLanguage:` [`LRLanguage`](https://codemirror.net/docs/ref/#language.LRLanguage)
+- `wgsl()->` [`LanguageSupport`](https://codemirror.net/docs/ref/#language.LanguageSupport)
+
 ## Usage
 
-`wgslLanguage` and `wgsl` in [index.ts](https://github.com/iizukak/codemirror-lang-wgsl/blob/main/src/index.ts) are our public API.
 You can use like below code.
 
 ```typescript
