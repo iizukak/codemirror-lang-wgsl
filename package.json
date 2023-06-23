@@ -20,12 +20,13 @@
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "codemirror": "6.x"
+    "codemirror": "6.x",
+    "@codemirror/language": "6.x",
+    "@lezer/highlight": "1.x",
+    "@lezer/lr": "^1.x"
   },
   "devDependencies": {
-    "@codemirror/language": "6.x",
     "@lezer/generator": "1.x",
-    "@lezer/highlight": "1.x",
     "@rollup/plugin-node-resolve": "15.x",
     "mocha": "10.x",
     "rollup": "3.x",
