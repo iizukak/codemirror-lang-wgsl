@@ -1,5 +1,5 @@
 {
-  "name": "codemirror-lang-wgsl",
+  "name": "@iizukak/codemirror-lang-wgsl",
   "version": "0.2.0",
   "description": "WGSL language support for CodeMirror",
   "author": {
@@ -32,5 +32,9 @@
     "rollup-plugin-dts": "5.x",
     "rollup-plugin-ts": "3.x"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iizukak/codemirror-lang-wgsl/"
+  }
 }
