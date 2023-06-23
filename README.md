@@ -3,11 +3,11 @@
 This is a WGSL ([WebGPU Shading Language](https://www.w3.org/TR/WGSL/))
 language package for [CodeMirror](https://codemirror.net/6/) editor.
 
-## Build and test
+## Build and Test
 
 ```
 $ git clone git@github.com:iizukak/codemirror-lang-wgsl.git
-$ cd codemirror-lang-wgsl.git 
+$ cd codemirror-lang-wgsl.git
 $ npm install
 $ npm run prepare
 $ npm test
